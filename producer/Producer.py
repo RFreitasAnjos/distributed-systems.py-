@@ -8,10 +8,13 @@ channel = connection.channel()
 # Criar exchange do tipo 'topic'
 channel.exchange_declare(exchange='orders', exchange_type='topic')
 
-statuses = ["preparado", "enviado", "entregue"]
+# Receber informações do usuário
+order_id = input("Digite o ID do pedido: ")
 
-order_id = 123
+statuses_input = input("Digite os status separados por vírgula (ex: preparado,enviado,entregue): ")
+statuses = [status.strip() for status in statuses_input.split(",")]
 
+# Enviar mensagens
 for status in statuses:
     routing_key = f"order.{order_id}.{status}"
     message = f"Pedido {order_id} está {status}"

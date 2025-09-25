@@ -4,7 +4,7 @@ def callback(ch, method, properties, body):
     print(f"[x] Notificação recebida: {body.decode()}")
 
 # Conexão com RabbitMQ
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
 channel = connection.channel()
 
 # Declarar exchange
